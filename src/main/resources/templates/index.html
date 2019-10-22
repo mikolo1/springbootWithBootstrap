@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>TaskList</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="stylesheet" href="webjars/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"  th:href="@{/assets/css/mdbmin.css}">
+    <link rel="stylesheet" type="text/css"  th:href="@{/assets/css/style.css}">
+</head>
+<body>
+<div>
+    Strona główna TaskList
+</div>
+<div class="left">
+    <div class="formdiv">
+        <form method="post" th:action="@{addtask}" th:object="${toDoItem}">
+            <div class="form-group">
+                <label for="taskdescription">Opis zadania:</label>
+                <textarea class="form-control" id="taskdescription" th:field="*{description}" rows="2"
+                          autofocus="autofocus"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="finishDate">Termin wykonania:</label>
+                <input type="date" class="form-control" id="finishDate" th:field="*{deadLine}">
+            </div>
+            <div class="form-group">
+                <label for="choosePriority">Priorytet:</label>
+                <select class="form-control" id="choosePriority" name="priority">
+                    <option value="1">Priorytet 1 (najwyższy)</option>
+                    <option value="2">Priorytet 2</option>
+                    <option value="3" selected>Priorytet 3 (średni)</option>
+                    <option value="4">Priorytet 4</option>
+                    <option value="5">Priorytet 5 (najniższy)</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Wyślij</button>
+        </form>
+    </div>
+</div>
+
+<div class="right">
+    <table id="example" class="table dataTable table-striped table-bordered table-sm display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th class="th-sm">ID</th>
+            <th class="th-sm">Description</th>
+            <th class="th-sm">Finish Date </th>
+            <th class="th-sm">Priority </th>
+            <th class="th-sm">Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="line" th:each="task: ${allTasks}">
+            <td><a th:href="@{/edit(id=${task.id})}" th:text="${task.id}">ID</a></td>
+            <td><a th:href="@{/edit(id=${task.id})}" th:text="${task.description}">Description</a></td>
+            <td><a th:href="@{/edit(id=${task.id})}" th:text="${task.deadLine}">DeadLine</a></td>
+            <td><a th:href="@{/edit(id=${task.id})}" th:text="${task.priority}">Priorytet</a></td>
+            <td><a th:href="@{/delete(id=${task.id})}" th:text="Delete">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="webjars/jquery/3.3.1/jquery.min.js"></script>
+<script src="webjars/popper.js/1.14.6/dist/umd/popper.min.js"></script>
+<script src="webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" th:inline="javascript">
+    $(document).ready(function () {
+        $('#example').DataTable();
+        $('.dataTables_length').addClass('bs-select');
+    });
+</script>
+<script type="text/javascript" th:src="@{/assets/js/jquery.dataTables.min.js}"></script>
+</body>
+</html>
