@@ -1,4 +1,4 @@
-package mikolo.hellospringboot.controller;
+package mikolo.hellospringboot.restApi;
 
 import mikolo.hellospringboot.exception.EntityNotFoundException;
 import mikolo.hellospringboot.model.DtoError;
