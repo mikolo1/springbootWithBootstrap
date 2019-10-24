@@ -15,8 +15,8 @@ public class ToDoController {
     private final ToDoService toDoService;
 
     @GetMapping
-    private List<ToDoItem> findAll(){
-        return toDoService.findAll();
+    private List<ToDoItem> findAll(@RequestParam(name = "search", required = false) String filter){
+        return toDoService.findAll(filter);
     }
 
     @GetMapping("/{id}")

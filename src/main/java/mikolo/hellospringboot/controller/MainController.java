@@ -20,7 +20,7 @@ public class MainController {
 
     @GetMapping({"/", "/index"})
     public String showMainpage(Model model){
-        List<ToDoItem> all = toDoService.findAll();
+        List<ToDoItem> all = toDoService.findAll("");
         model.addAttribute("allTasks", all);
 //        model.addAttribute("toDoItem", new ToDoItem());
         return "index";
