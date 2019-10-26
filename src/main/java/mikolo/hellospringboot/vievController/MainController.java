@@ -1,4 +1,4 @@
-package mikolo.hellospringboot.controller;
+package mikolo.hellospringboot.vievController;
 
 import lombok.RequiredArgsConstructor;
 import mikolo.hellospringboot.model.ToDoItem;

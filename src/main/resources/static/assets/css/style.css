@@ -26,12 +26,12 @@ body{
 .tableClass{
     text-align: center;
     padding: 10px;
-    border: black 1px solid;
+    /*border: black 1px solid;*/
     border-collapse: collapse;
 }
-.tableClass tr td, th{
-    border: black 1px solid;
-}
+/*.tableClass tr td, th{*/
+/*    border: black 1px solid;*/
+/*}*/
 
 .formedit{
     width: 500px;
