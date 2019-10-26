@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.annotation.SessionScope;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 //@SessionScope
@@ -29,12 +30,13 @@ public class ToDoService {
         return toDoRepository.save(toDoItem);
     }
 
+    @Transactional
     public ToDoItem updateItem(ToDoItem toDoItem) {
         ToDoItem item = toDoRepository.findById(toDoItem.getId()).orElseThrow(() -> new EntityNotFoundException(toDoItem.getId()));
         item.setDeadLine(toDoItem.getDeadLine());
         item.setDescription(toDoItem.getDescription());
         item.setPriority(toDoItem.getPriority());
-        return toDoRepository.save(item);
+        return item;
     }
 
     public void deleteItemById(Long id) {
